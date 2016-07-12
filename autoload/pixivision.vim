@@ -95,6 +95,8 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   execute bufid 'buffer'
 
   setfiletype pixivision
+  setlocal formatoptions+=m
+  setlocal textwidth=70
 
   silent 0 put =s:P_LOADING
   let l = getline(s:P_MESSASGE_LINE)
@@ -109,7 +111,8 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
 
   silent % delete _
   if v:shell_error == 0
-    silent 0 put =s
+    silent 0 put =s:format_feed(s)
+    global/^description:/s///|normal! gqgq
   else
     silent 0 put =s:P_ERROR
     let l = getline(s:P_MESSASGE_LINE)
@@ -141,6 +144,39 @@ endfunction
 
 
 " Misc.  "{{{1
+function! s:format_feed(lines)  "{{{2
+  let bs = []
+
+  for l in a:lines
+    let e = s:parse_line(l)
+    call extend(bs, [
+    \   printf('［%s］%s', e['category'], e['title']),
+    \   e['date'],
+    \   e['link'],
+    \   'description:' . e['description'],
+    \   '',
+    \ ])
+  endfor
+
+  return bs
+endfunction
+
+
+
+
+function! s:parse_line(line)  "{{{2
+  let result = {}
+
+  let items = split(a:line, '\t')
+  for item in items
+    let m = matchlist(item, '^\([^:]\+\):\(.*\)$')
+    if !empty(m)
+      let result[m[1]] = m[2]
+    endif
+  endfor
+
+  return result
+endfunction
 
 
 
