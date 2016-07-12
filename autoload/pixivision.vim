@@ -26,6 +26,7 @@
 let s:BUFNAME = '[pixivision]'
 
 let s:FEED_URL = 'http://www.pixivision.net/ja/rss'
+let s:XSLT_PATH = expand('<sfile>:p:h:h') . '/etc/feed-to-text.xslt'
 
 
 
@@ -48,7 +49,11 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
 
   redraw
 
-  let s = system('curl --silent ' . s:FEED_URL)
+  let s = systemlist(printf(
+  \   'curl --silent %s | xsltproc %s -',
+  \   s:FEED_URL,
+  \   s:XSLT_PATH
+  \ ))
 
   silent % delete _
   silent 0 put =s
@@ -56,10 +61,6 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
 
   return bufid
 endfunction
-
-
-
-
 
 
 
