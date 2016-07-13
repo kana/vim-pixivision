@@ -100,9 +100,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   setlocal buftype=nofile
   setlocal noswapfile
 
-  silent 0 put =s:P_LOADING
-  let l = getline(s:P_MESSASGE_LINE)
-  call setline(s:P_MESSASGE_LINE, l . 'Now loading...')
+  call s:show_message(s:P_LOADING, 'Now loading...')
   redraw
 
   let s = systemlist(printf(
@@ -118,9 +116,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
     normal! G{}"_dG
     nnoremap <buffer> <silent> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
-    silent 0 put =s:P_ERROR
-    let l = getline(s:P_MESSASGE_LINE)
-    call setline(s:P_MESSASGE_LINE, l . 'Error!')
+    call s:show_message(s:P_ERROR, 'Error!')
   endif
   1
 
@@ -182,6 +178,15 @@ function! s:parse_line(line)  "{{{2
   endfor
 
   return result
+endfunction
+
+
+
+
+function! s:show_message(p_chan, message)  "{{{2
+  silent 0 put =a:p_chan
+  let l = getline(s:P_MESSASGE_LINE)
+  call setline(s:P_MESSASGE_LINE, l . a:message)
 endfunction
 
 
