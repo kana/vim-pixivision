@@ -114,6 +114,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
     silent 0 put =s:format_feed(s)
     global/^description:/s///|normal! gqgq
     normal! G{}"_dG
+    nnoremap <buffer> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
     silent 0 put =s:P_ERROR
     let l = getline(s:P_MESSASGE_LINE)
@@ -177,6 +178,28 @@ function! s:parse_line(line)  "{{{2
   endfor
 
   return result
+endfunction
+
+
+
+
+function! s:open_article()  "{{{2
+  normal! ma
+
+  let lc = line('.')
+  normal! {
+  let lb = line('.')
+  normal! }
+  let le = line('.')
+  let ls = search('^http://', 'bn')
+
+  if lb <= lc && lc <= le && ls != 0
+    silent call system('open ' . shellescape(getline(ls)))
+  else
+    echoerr 'P <Something wrong!  No URL found for this article!'
+  endif
+
+  normal! `a
 endfunction
 
 
