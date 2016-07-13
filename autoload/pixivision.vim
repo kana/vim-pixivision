@@ -31,7 +31,7 @@ let s:XSLT_PATH = expand('<sfile>:p:h:h') . '/etc/feed-to-text.xslt'
 
 
 
-let s:P_MESSASGE_LINE = 9
+let s:P_MESSASGE_LINE = 10
 
 let s:P_LOADING = [
 \   "             ,;+##+;,                        ",
@@ -189,6 +189,13 @@ function! s:show_message(p_chan, message)  "{{{2
   silent execute 0 'put =p_chan_with_margin'
   let l = margin_top + s:P_MESSASGE_LINE
   call setline(l, getline(l) . a:message)
+
+  let margin_left = (&columns - len(getline(l))) / 2
+  echomsg &columns len(getline(l)) margin_left
+  let @0 = repeat(' ', margin_left)
+  % normal! "0P
+
+  normal! MW
 endfunction
 
 
