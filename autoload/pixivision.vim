@@ -114,6 +114,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
     silent 0 put =s:format_feed(s)
     global/^description:/s///|normal! gqgq
     normal! G{}"_dG
+    redraw!
     nnoremap <buffer> <silent> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
     call s:show_message(s:P_ERROR, 'Error!')
