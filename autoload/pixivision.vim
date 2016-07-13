@@ -184,9 +184,11 @@ endfunction
 
 
 function! s:show_message(p_chan, message)  "{{{2
-  silent 0 put =a:p_chan
-  let l = getline(s:P_MESSASGE_LINE)
-  call setline(s:P_MESSASGE_LINE, l . a:message)
+  let margin_top = (&lines - len(a:p_chan)) / 2
+  let p_chan_with_margin = repeat([''], margin_top) + a:p_chan
+  silent execute 0 'put =p_chan_with_margin'
+  let l = margin_top + s:P_MESSASGE_LINE
+  call setline(l, getline(l) . a:message)
 endfunction
 
 
