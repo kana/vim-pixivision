@@ -97,6 +97,8 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   setfiletype pixivision
   setlocal formatoptions+=m
   setlocal textwidth=70
+  setlocal buftype=nofile
+  setlocal noswapfile
 
   silent 0 put =s:P_LOADING
   let l = getline(s:P_MESSASGE_LINE)
@@ -121,6 +123,8 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
     call setline(s:P_MESSASGE_LINE, l . 'Error!')
   endif
   1
+
+  setlocal nomodifiable
 
   return bufid
 endfunction
