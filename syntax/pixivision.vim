@@ -26,7 +26,7 @@ syntax match pixivisionCategoryA /［.*］/ contained containedin=pixivisionHead
 syntax match pixivisionCategoryB /［.*］/ contained containedin=pixivisionHeader
 syntax match pixivisionCategoryC /［.*］/ contained containedin=pixivisionHeader
 syntax match pixivisionCategoryX /［.*］/ contained containedin=pixivisionHeader
-syntax match pixivisionDate /^.*\<20\d\d\>.*$/
+syntax match pixivisionDate /^.*\<20\d\d\>.*:.*$/
 syntax match pixivisionUrl /^http.*/
 " syntax match pixivisionText /.../
 
