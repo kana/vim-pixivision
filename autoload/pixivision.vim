@@ -107,8 +107,8 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   silent % delete _
   if v:shell_error == 0
     silent 0 put =s:format_feed(s)
-    global/^description:/s///|normal! gqgq
-    normal! G{}"_dG
+    silent global/^description:/s///|normal! gqgq
+    silent normal! G{}"_dG
     redraw!
     nnoremap <buffer> <silent> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
