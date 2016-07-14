@@ -100,7 +100,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   setlocal buftype=nofile
   setlocal noswapfile
 
-  call s:show_message(s:P_LOADING, 'Now loading...')
+  call s:show_message(s:P_LOADING)
   redraw
 
   let s = systemlist(printf(
@@ -117,7 +117,7 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
     redraw!
     nnoremap <buffer> <silent> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
-    call s:show_message(s:P_ERROR, 'Error!')
+    call s:show_message(s:P_ERROR)
   endif
   1
 
@@ -184,15 +184,13 @@ endfunction
 
 
 
-function! s:show_message(p_chan, message)  "{{{2
+function! s:show_message(p_chan)  "{{{2
   let margin_top = (&lines - len(a:p_chan)) / 2
   let p_chan_with_margin = repeat([''], margin_top) + a:p_chan
   silent execute 0 'put =p_chan_with_margin'
-  let l = margin_top + s:P_MESSASGE_LINE
-  call setline(l, getline(l) . a:message)
 
+  let l = margin_top + s:P_MESSASGE_LINE
   let margin_left = (&columns - len(getline(l))) / 2
-  echomsg &columns len(getline(l)) margin_left
   let @0 = repeat(' ', margin_left)
   % normal! "0P
 
