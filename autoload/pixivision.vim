@@ -119,6 +119,7 @@ function! pixivision#_on_close(channel)  "{{{2
     execute pbufid 'buffer'
   endif
 
+  setfiletype pixivision
   setlocal modifiable
 
   silent % delete _
