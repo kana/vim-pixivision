@@ -91,8 +91,12 @@ let s:P_ERROR = [
 
 " Interface  "{{{1
 function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
-  let bufid = bufnr(s:BUFNAME_PATTERN, !0)
-  execute bufid 'buffer'
+  let bufid = bufnr(s:BUFNAME_PATTERN)
+  if bufid != -1
+    execute bufid 'buffer'
+  else
+    file `=s:BUFNAME`
+  endif
 
   setfiletype pixivision
 
