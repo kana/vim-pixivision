@@ -102,7 +102,28 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   call s:show_message(s:P_LOADING)
   redraw
 
-  let s = systemlist(s:FETCHER_COMMAND)
+  setlocal nomodifiable
+
+  call job_start(s:FETCHER_COMMAND, {'close_cb': 'pixivision#_on_close'})
+endfunction
+
+
+
+
+function! pixivision#_on_close(channel)  "{{{2
+  let s = []
+  while ch_status(a:channel) ==# 'buffered'
+    call add(s, ch_read(a:channel))
+  endwhile
+
+  let cbufid = bufnr('')
+  let pbufid = bufnr(s:BUFNAME)
+  if cbufid != pbufid
+    $ tabnew
+    execute pbufid 'buffer'
+  endif
+
+  setlocal modifiable
 
   silent % delete _
   if v:shell_error == 0
