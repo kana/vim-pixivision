@@ -10,7 +10,7 @@ syntax match pixivisionPChanB /;;\+/
 syntax match pixivisionPChanC /``\+/
 syntax match pixivisionPChanD /< .*$/
 syntax match pixivisionPChanE /::\+/
-syntax match pixivisionPChanF /\.\.\+/
+syntax match pixivisionPChanF /,,\+/
 
 highlight pixivisionPChanA ctermfg=black ctermbg=black
 highlight pixivisionPChanB ctermfg=darkgray ctermbg=darkgray
