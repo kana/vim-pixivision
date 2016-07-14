@@ -22,10 +22,10 @@ highlight pixivisionPChanF ctermfg=white ctermbg=white
 " TODO: Use nextgroup for category, date, url and text.
 syntax match pixivisionHeader /^［.*］.*$/
 syntax match pixivisionTitle /.*/ contained containedin=pixivisionHeader
-syntax match pixivisionCategoryA /［.*］/ contained containedin=pixivisionHeader
-syntax match pixivisionCategoryB /［.*］/ contained containedin=pixivisionHeader
-syntax match pixivisionCategoryC /［.*］/ contained containedin=pixivisionHeader
 syntax match pixivisionCategoryX /［.*］/ contained containedin=pixivisionHeader
+syntax match pixivisionCategoryA /\v［(イラスト|Web漫画|漫画|小説|音楽|グッズ)］/ contained containedin=pixivisionHeader
+syntax match pixivisionCategoryB /\v［(講座|描き方|メイキング|素材|作画資料|作り方)］/ contained containedin=pixivisionHeader
+syntax match pixivisionCategoryC /\v［(SPECIAL|インタビュー|仕事場拝見|おすすめ|やってみた)］/ contained containedin=pixivisionHeader
 syntax match pixivisionDate /^.*\<20\d\d\>.*:.*$/
 syntax match pixivisionUrl /^http.*/
 " syntax match pixivisionText /.../
