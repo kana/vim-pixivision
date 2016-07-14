@@ -126,13 +126,12 @@ function! pixivision#_on_close(channel)  "{{{2
   if v:shell_error == 0
     silent 0 put =s:format_feed(s)
     silent global/^description:/s///|normal! gqgq
-    silent normal! G{}"_dG
+    silent normal! G{}"_dGgg
     redraw!
     nnoremap <buffer> <silent> <Enter>  :<C-u>call <SID>open_article()<Enter>
   else
     call s:show_message(s:P_ERROR)
   endif
-  1
 
   setlocal nomodifiable
 endfunction
