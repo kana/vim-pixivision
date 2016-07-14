@@ -9,11 +9,15 @@ syntax match pixivisionPChanA /##\+/
 syntax match pixivisionPChanB /;;\+/
 syntax match pixivisionPChanC /``\+/
 syntax match pixivisionPChanD /< .*$/
+syntax match pixivisionPChanE /::\+/
+syntax match pixivisionPChanF /\.\.\+/
 
 highlight pixivisionPChanA ctermfg=black ctermbg=black
-highlight pixivisionPChanB ctermfg=cyan ctermbg=cyan
-highlight pixivisionPChanC ctermfg=white ctermbg=white
+highlight pixivisionPChanB ctermfg=darkgray ctermbg=darkgray
+highlight pixivisionPChanC ctermfg=cyan ctermbg=cyan
 highlight pixivisionPChanD ctermfg=black ctermbg=white
+highlight pixivisionPChanE ctermfg=brown ctermbg=brown
+highlight pixivisionPChanF ctermfg=white ctermbg=white
 
 " TODO: Use nextgroup for category, date, url and text.
 syntax match pixivisionHeader /^［.*］.*$/
