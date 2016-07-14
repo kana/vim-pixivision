@@ -24,6 +24,7 @@
 " Constants  "{{{1
 
 let s:BUFNAME = '[pixivision]'
+let s:BUFNAME_PATTERN = escape(s:BUFNAME, '[]')
 
 let s:FETCHER_COMMAND = expand('<sfile>:p:h:h') . '/bin/fetch-pixivision-feed'
 
@@ -90,7 +91,7 @@ let s:P_ERROR = [
 
 " Interface  "{{{1
 function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
-  let bufid = bufnr(s:BUFNAME, !0)
+  let bufid = bufnr(s:BUFNAME_PATTERN, !0)
   execute bufid 'buffer'
 
   setfiletype pixivision
@@ -113,7 +114,7 @@ function! pixivision#_on_close(channel)  "{{{2
   endwhile
 
   let cbufid = bufnr('')
-  let pbufid = bufnr(s:BUFNAME)
+  let pbufid = bufnr(s:BUFNAME_PATTERN)
   if cbufid != pbufid
     $ tabnew
     execute pbufid 'buffer'
@@ -141,7 +142,7 @@ endfunction
 
 function! pixivision#view()  "{{{2
   $ tabnew
-  let bufid = bufnr(s:BUFNAME)
+  let bufid = bufnr(s:BUFNAME_PATTERN)
   if bufid == -1
     call pixivision#initialize_current_buffer_as_viewer()
   else
