@@ -94,10 +94,6 @@ function! pixivision#initialize_current_buffer_as_viewer()  "{{{2
   execute bufid 'buffer'
 
   setfiletype pixivision
-  setlocal formatoptions+=m
-  setlocal textwidth=70
-  setlocal buftype=nofile
-  setlocal noswapfile
 
   call s:show_message(s:P_LOADING)
   redraw
