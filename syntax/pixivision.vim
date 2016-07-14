@@ -15,7 +15,7 @@ syntax match pixivisionPChanF /\.\.\+/
 highlight pixivisionPChanA ctermfg=black ctermbg=black
 highlight pixivisionPChanB ctermfg=darkgray ctermbg=darkgray
 highlight pixivisionPChanC ctermfg=cyan ctermbg=cyan
-highlight pixivisionPChanD ctermfg=black ctermbg=white
+highlight pixivisionPChanD ctermfg=black ctermbg=white cterm=bold
 highlight pixivisionPChanE ctermfg=brown ctermbg=brown
 highlight pixivisionPChanF ctermfg=white ctermbg=white
 
