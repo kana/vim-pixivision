@@ -1,0 +1,6 @@
+#!/bin/bash
+
+feed_url='http://www.pixivision.net/ja/rss'
+xslt_path="$(dirname "$0")/../etc/feed-to-text.xslt"
+
+curl --silent "$feed_url" | xsltproc "$xslt_path" -
