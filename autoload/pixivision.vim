@@ -128,7 +128,7 @@ function! pixivision#_on_close(channel)  "{{{2
   setlocal modifiable
 
   silent % delete _
-  if v:shell_error == 0
+  if !empty(s)
     silent 0 put =s:format_feed(s)
     silent global/^description:/s///|normal! gqgq
     silent normal! G{}"_dGgg
